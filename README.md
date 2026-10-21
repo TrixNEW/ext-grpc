@@ -36,6 +36,13 @@ make -j"$(nproc)"
 make install
 ```
 
+In a pmmp style `compile.sh`, swap the PECL download for this tag:
+
+```bash
+EXT_GRPC_VERSION="1.74.0-trix.1"
+get_github_extension "grpc" "$EXT_GRPC_VERSION" "TrixNEW" "ext-grpc" "v"
+```
+
 ## License
 
 Apache-2.0, see [LICENSE](LICENSE).
