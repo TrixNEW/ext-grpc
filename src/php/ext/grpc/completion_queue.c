@@ -18,7 +18,10 @@
 
 #include "completion_queue.h"
 
-grpc_completion_queue *completion_queue;
+/* One per thread: every thread runs RINIT and would otherwise replace a shared
+ * queue under calls other threads are still waiting on, and a shared queue only
+ * allows 6 threads to wait on it at once. */
+TSRM_TLS grpc_completion_queue *completion_queue;
 
 void grpc_php_init_completion_queue(TSRMLS_D) {
   completion_queue = grpc_completion_queue_create_for_pluck(NULL);

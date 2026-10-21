@@ -514,6 +514,9 @@ PHP_MINIT_FUNCTION(grpc) {
   /** grpc version string */
   REGISTER_STRING_CONSTANT("Grpc\\VERSION", PHP_GRPC_VERSION,
                            CONST_CS | CONST_PERSISTENT);
+  /** every thread has its own completion queue, see completion_queue.c */
+  REGISTER_BOOL_CONSTANT("Grpc\\PER_THREAD_COMPLETION_QUEUE", 1,
+                         CONST_CS | CONST_PERSISTENT);
   
   grpc_init_call(TSRMLS_C);
   GRPC_STARTUP(channel);

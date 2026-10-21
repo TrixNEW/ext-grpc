@@ -27,8 +27,8 @@
 #define TSRMLS_D
 #endif
 
-/* The global completion queue for all operations */
-extern grpc_completion_queue *completion_queue;
+/* The completion queue of the calling thread */
+extern TSRM_TLS grpc_completion_queue *completion_queue;
 
 /* Initializes the completion queue */
 void grpc_php_init_completion_queue(TSRMLS_D);
